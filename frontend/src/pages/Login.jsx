@@ -31,10 +31,10 @@ function LoginAcc() {
     })
   }
   return (
-    <div className='min-h-screen bg-zinc-900 text-white pt-5 pl-5'>
+    <>
       <h1 className='text-2xl font-semibold mb-4'>Login Account</h1>
       <form onSubmit={handleLogin} action="">
-       
+      
         <input
         name='email'
         onChange={handleChange}
@@ -46,7 +46,7 @@ function LoginAcc() {
         
         <input type="submit" className='bg-blue-500 p-2 rounded-sm' value="Login Account" />
       </form>
-    </div>
+        </>
   )
 }
 

@@ -17,7 +17,7 @@ function App() {
             }
         })
         .then(response => {
-            console.log(response.data); // Handle the response from the protected route
+            // console.log(response.data); // Handle the response from the protected route
         })
         .catch(error => {
             console.error('Error accessing protected route:', error);
@@ -26,11 +26,14 @@ function App() {
 }, []);
   return (
     <>
+    <div className='min-h-screen bg-zinc-900 text-white pt-5 pl-5'>
+
     <Routes>
       <Route path='/create' element={<CreateAcc />} />
       <Route path='/login' element={<Login />} />
       <Route path='/profile' element={<Profile />} />
     </Routes>
+    </div>
     </>
   )
 }

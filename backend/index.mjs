@@ -56,8 +56,22 @@ app.post('/login',async(req,res) => {
 })
 
 app.get("/profile",verifyToken,async(req,res) => {
+  let user = await userModel.findOne({email : req.user.email}).populate('posts');
+  if(user) return res.status(200).json(user);
+  
+  else return res.status(404).send("Something went wrong");
+})
+app.post("/post",verifyToken,async(req,res) => {
   let user = await userModel.findOne({email : req.user.email});
-  res.status(200).send(user);
+  let {content} = req.body;
+  let post = await postModel({
+    user : user._id,
+    content
+  })
+  await post.save();
+  user.posts.push(post._id);
+  await user.save();
+  res.send("Post has been created")
 })
 
 function verifyToken(req, res, next) {
